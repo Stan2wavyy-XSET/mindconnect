@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import MoodCheckIn from "../components/MoodCheckIn";
 import MoodHistory from "../components/MoodHistory";
+import TherapistConnections from "../components/TherapistConnections";
+import UserConnections from "../components/UserConnections";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -21,15 +23,14 @@ export default function Dashboard() {
 
       {user?.role === "user" && (
         <>
+          <UserConnections />
           <p><Link to="/therapists">Browse therapists →</Link></p>
           <MoodCheckIn onCheckInSaved={handleCheckInSaved} />
           <MoodHistory refreshKey={refreshKey} />
         </>
       )}
 
-      {user?.role === "therapist" && (
-        <p>Therapist dashboard coming soon — for now, this confirms your role-based rendering works.</p>
-      )}
+      {user?.role === "therapist" && <TherapistConnections />}
     </div>
   );
 }

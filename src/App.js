@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Therapists from "./pages/Therapists";
+import Chat from "./pages/Chat";
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -28,6 +29,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Therapists />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/chat/:connectionId"
+        element={
+          <ProtectedRoute>
+            <Chat />
           </ProtectedRoute>
         }
       />
