@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import client from "../api/client";
 import { getSocket } from "../api/socket";
 import { useAuth } from "../context/AuthContext";
+import CrisisDisclaimer from "../components/CrisisDisclaimer";
 
 export default function Chat() {
   const { connectionId } = useParams();
@@ -34,6 +35,7 @@ export default function Chat() {
     function handleNewMessage(msg) {
       if (String(msg.connectionId) === String(connectionId)) {
         setMessages((prev) => [...prev, msg]);
+
       }
     }
     function handleSocketError(err) {
@@ -67,7 +69,8 @@ export default function Chat() {
     <div style={{ maxWidth: 600, margin: "40px auto", padding: 24 }}>
       <p><Link to="/dashboard">← Back to dashboard</Link></p>
       <h1>Chat</h1>
-      <p style={{ fontSize: 12, color: "#999" }}>Logged in as: {user?.name} (id: {myId})</p>
+
+      <CrisisDisclaimer/>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
@@ -86,7 +89,7 @@ export default function Chat() {
               >
                 {m.text}
               </span>
-              <div style={{ fontSize: 10, color: "#aaa" }}>sender: {String(m.senderId)}</div>
+      
             </div>
           );
         })}

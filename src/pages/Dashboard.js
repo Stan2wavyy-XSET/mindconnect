@@ -5,6 +5,7 @@ import MoodCheckIn from "../components/MoodCheckIn";
 import MoodHistory from "../components/MoodHistory";
 import TherapistConnections from "../components/TherapistConnections";
 import UserConnections from "../components/UserConnections";
+import CrisisDisclaimer from "../components/CrisisDisclaimer";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -20,6 +21,8 @@ export default function Dashboard() {
         <h1>Welcome, {user?.name}</h1>
         <button onClick={logout}>Log out</button>
       </div>
+
+      <CrisisDisclaimer />
 
       {user?.role === "user" && (
         <>
